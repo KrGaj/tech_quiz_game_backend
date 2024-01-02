@@ -1,0 +1,12 @@
+ktor:
+    application:
+        modules:
+            - com.example.ApplicationKt.koin
+            - com.example.ApplicationKt.koinModules
+            - com.example.ApplicationKt.module
+    deployment:
+        port: 8080
+
+    database:
+        driver: org.mariadb.jdbc.Driver
+        url: TODO
