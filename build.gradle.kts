@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation(libs.google.api.client)
+    implementation(libs.google.guava)
 
     implementation(libs.ktor.server.call.logging.jvm)
     implementation(libs.ktor.server.content.negotiation.jvm)
