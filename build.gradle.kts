@@ -20,12 +20,16 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.google.api.client)
+
     implementation(libs.ktor.server.call.logging.jvm)
     implementation(libs.ktor.server.content.negotiation.jvm)
     implementation(libs.ktor.server.core.jvm)
     implementation(libs.ktor.serialization.kotlinx.json.jvm)
     implementation(libs.ktor.server.netty.jvm)
     implementation(libs.ktor.server.config.yaml)
+    implementation(libs.ktor.server.auth)
+    implementation(libs.ktor.server.auth.jwt)
 
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)

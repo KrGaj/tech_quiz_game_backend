@@ -1,6 +1,8 @@
 package com.example
 
-import com.example.di.databaseModule
+import com.example.data.database.initDatabase
+import com.example.di.daoModule
+import com.example.di.repositoryModule
 import com.example.plugins.*
 import io.ktor.server.application.*
 import org.koin.ktor.plugin.Koin
@@ -13,14 +15,17 @@ fun main(args: Array<String>) {
 fun Application.koin() {
     install(Koin) {
         slf4jLogger()
+
+        modules(
+            daoModule,
+            repositoryModule,
+        )
     }
 }
 
-fun Application.koinModules() {
-    databaseModule()
-}
-
 fun Application.module() {
+    initDatabase()
+    configureAuth()
     configureMonitoring()
     configureSerialization()
     configureRouting()

@@ -1,8 +1,8 @@
-package com.example.dto
+package com.example.data.dto
 
 import java.util.UUID
 
-data class Answer(
+data class AnswerDTO(
     val user: UUID,
     val question: Long,
     val category: String,
