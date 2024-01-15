@@ -3,13 +3,13 @@ kotlin = "1.9.22"
 ktor = "2.3.7"
 exposed = "0.45.0"
 koin = "3.5.3"
-mysql = "8.2.0"
+mariadb = "3.3.2"
 google-api = "2.2.0"
 logback = "1.4.14"
 guava = "33.0.0-jre"
 
 [libraries]
-mysql-connector = { module = "com.mysql:mysql-connector-j", version.ref = "mysql" }
+mariadb-java-client = { module = "org.mariadb.jdbc:mariadb-java-client", version.ref = "mariadb" }
 google-api-client = { module = "com.google.api-client:google-api-client", version.ref = "google-api" }
 google-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 

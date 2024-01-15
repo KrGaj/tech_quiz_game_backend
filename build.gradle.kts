@@ -23,6 +23,8 @@ dependencies {
     implementation(libs.google.api.client)
     implementation(libs.google.guava)
 
+    implementation(libs.mariadb.java.client)
+
     implementation(libs.ktor.server.call.logging.jvm)
     implementation(libs.ktor.server.content.negotiation.jvm)
     implementation(libs.ktor.server.core.jvm)
