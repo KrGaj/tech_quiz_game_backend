@@ -19,7 +19,6 @@ class UserDaoDefault : UserDAO {
 
     override fun insertUser(user: User): User? {
         val insertStatement = Users.insert {
-            it[uuid] = user.uuid
             it[email] = user.email
             it[username] = user.username
         }
