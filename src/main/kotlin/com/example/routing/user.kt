@@ -2,6 +2,8 @@ package com.example.routing
 
 import com.example.data.dto.TokenData
 import com.example.data.repository.UserRepository
+import com.example.util.Failure
+import com.example.util.Success
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -21,8 +23,13 @@ internal fun Application.routingUser() {
                 val tokenData = call.principal<TokenData>()
                 if (tokenData == null) call.respond(HttpStatusCode.Unauthorized)
 
-                val user = repository.getOrCreateUser(tokenData!!)
-                call.respond(user ?: HttpStatusCode.InternalServerError)
+                when(
+                    val result = repository.getOrCreateUser(tokenData!!)
+                ) {
+                    is Success -> call.respond(result.data)
+                    is Failure -> call.respond(HttpStatusCode.InternalServerError)
+                    else -> Unit
+                }
             }
         }
     }

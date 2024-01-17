@@ -1,7 +1,10 @@
 package com.example.data.repository
 
-import io.ktor.server.application.*
+import com.example.data.dto.AnswerDTO
+import com.example.util.RepositoryResult
 
 fun interface AnswerRepository {
-    suspend fun addAnswer(call: ApplicationCall)
+    suspend fun addAnswer(
+        answer: AnswerDTO,
+    ): RepositoryResult<Unit>
 }

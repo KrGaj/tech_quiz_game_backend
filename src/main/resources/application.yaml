@@ -7,8 +7,8 @@ ktor:
         port: 8080
 
     database:
-        jdbcURL: "jdbc:mariadb://localhost:3306/tech_quiz"
-        driverClassName: "org.mariadb.jdbc.Driver"
+        jdbcURL: $JDBC_URL
+        driverClassName: $DRIVER_CLASS_NAME
         username: $DB_USERNAME
         password: $DB_PASSWORD
 

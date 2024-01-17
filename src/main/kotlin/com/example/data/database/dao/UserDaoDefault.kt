@@ -5,11 +5,22 @@ import com.example.data.domain.User
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
+import java.util.UUID
 
 class UserDaoDefault : UserDAO {
-    override fun getUser(email: String): User? {
+    override fun getUserByEmail(email: String): User? {
         val selectStatement = Users.select {
             Users.email eq email
+        }
+
+        return selectStatement
+            .singleOrNull()
+            ?.let(::resultRowToUser)
+    }
+
+    override fun getUserByUUID(uuid: UUID): User? {
+        val selectStatement = Users.select {
+            Users.uuid eq uuid
         }
 
         return selectStatement
