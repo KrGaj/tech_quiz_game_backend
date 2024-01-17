@@ -7,5 +7,3 @@ data class Success<T>(
 ) : RepositoryResult<T>
 
 class UserNotFound<T> : RepositoryResult<T>
-
-class Failure<T> : RepositoryResult<T>

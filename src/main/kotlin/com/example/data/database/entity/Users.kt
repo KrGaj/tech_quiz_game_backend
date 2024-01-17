@@ -1,12 +1,19 @@
 package com.example.data.database.entity
 
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.dao.LongEntity
+import org.jetbrains.exposed.dao.LongEntityClass
+import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.dao.id.LongIdTable
 
-object Users : Table() {
-    val id = long("id").autoIncrement()
-    val uuid = uuid("uuid")
-    val username = varchar("username", 32)
-    val email = varchar("email", 320)
+class User(id: EntityID<Long>) : LongEntity(id) {
+    companion object : LongEntityClass<User>(Users)
+    var uuid by Users.uuid
+    var username by Users.username
+    var email by Users.email
+}
 
-    override val primaryKey = PrimaryKey(id)
+object Users : LongIdTable() {
+    val uuid = uuid("uuid").uniqueIndex()
+    val username = varchar("username", 32).uniqueIndex()
+    val email = varchar("email", 320).uniqueIndex()
 }

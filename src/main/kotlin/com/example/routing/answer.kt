@@ -2,17 +2,19 @@ package com.example.routing
 
 import com.example.data.dto.AnswerDTO
 import com.example.data.repository.AnswerRepository
-import com.example.util.Failure
 import com.example.util.Success
 import com.example.util.UserNotFound
 import io.ktor.http.HttpStatusCode
-import io.ktor.server.application.*
+import io.ktor.server.application.Application
+import io.ktor.server.application.call
 import io.ktor.server.request.receive
 import io.ktor.server.response.respond
-import io.ktor.server.routing.*
+import io.ktor.server.routing.post
+import io.ktor.server.routing.route
+import io.ktor.server.routing.routing
 import org.koin.ktor.ext.inject
 
-internal fun Application.routingAnswer() {
+fun Application.routingAnswer() {
     val repository by inject<AnswerRepository>()
 
     routing {
@@ -22,7 +24,6 @@ internal fun Application.routingAnswer() {
                 val response = when(repository.addAnswer(answer)) {
                     is Success -> HttpStatusCode.Created
                     is UserNotFound -> HttpStatusCode.Unauthorized
-                    is Failure -> HttpStatusCode.InternalServerError
                 }
 
                 call.respond(response)

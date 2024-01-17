@@ -1,15 +1,19 @@
 package com.example
 
 import com.example.data.database.initDatabase
-import com.example.di.daoModule
 import com.example.di.repositoryModule
-import com.example.plugins.*
-import io.ktor.server.application.*
+import com.example.plugins.configureAuth
+import com.example.plugins.configureMonitoring
+import com.example.plugins.configureRouting
+import com.example.plugins.configureSerialization
+import io.ktor.server.application.Application
+import io.ktor.server.application.install
+import io.ktor.server.netty.EngineMain
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
 
 fun main(args: Array<String>) {
-    io.ktor.server.netty.EngineMain.main(args)
+    EngineMain.main(args)
 }
 
 fun Application.koin() {
@@ -17,7 +21,6 @@ fun Application.koin() {
         slf4jLogger()
 
         modules(
-            daoModule,
             repositoryModule,
         )
     }
