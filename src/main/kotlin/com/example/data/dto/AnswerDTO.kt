@@ -4,7 +4,7 @@ import java.util.UUID
 
 data class AnswerDTO(
     val userUUID: UUID,
-    val question: Long,
-    val category: String,
+    val question: Question,
+    val category: Category,
     val isCorrect: Boolean,
 )

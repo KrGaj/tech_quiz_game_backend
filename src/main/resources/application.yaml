@@ -13,4 +13,4 @@ ktor:
         password: $DB_PASSWORD
 
     auth:
-        webClientId: TODO
+        webClientId: $WEB_CLIENT_ID

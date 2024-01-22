@@ -17,8 +17,8 @@ class AnswerRepositoryDefault : AnswerRepository {
 
         Answer.new {
             this.user = user
-            question = answer.question
-            category = answer.category
+            question = answer.question.id
+            category = answer.category.name
             isCorrect = answer.isCorrect
         }
 

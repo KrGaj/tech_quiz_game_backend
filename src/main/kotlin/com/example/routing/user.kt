@@ -14,7 +14,7 @@ import io.ktor.server.routing.routing
 import org.koin.ktor.ext.inject
 
 fun Application.routingUser() {
-    val repository by inject<UserRepository>()
+    val repository: UserRepository by inject()
 
     routing {
         route("/user") {
