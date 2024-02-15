@@ -12,9 +12,7 @@ import io.ktor.server.netty.EngineMain
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
 
-fun main(args: Array<String>) {
-    EngineMain.main(args)
-}
+fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.koin() {
     install(Koin) {
@@ -28,7 +26,7 @@ fun Application.koin() {
 
 fun Application.module() {
     initDatabase()
-    configureAuth()
+//    configureAuth()
     configureMonitoring()
     configureSerialization()
     configureRouting()

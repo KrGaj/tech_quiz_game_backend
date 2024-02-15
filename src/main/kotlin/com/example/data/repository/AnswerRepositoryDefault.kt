@@ -7,19 +7,24 @@ import com.example.data.dto.AnswerDTO
 import com.example.util.RepositoryResult
 import com.example.util.Success
 import com.example.util.UserNotFound
+import org.jetbrains.exposed.sql.transactions.transaction
 
 class AnswerRepositoryDefault : AnswerRepository {
     override suspend fun addAnswer(
         answer: AnswerDTO,
     ): RepositoryResult<Unit> {
-        val user = User.find { Users.uuid eq answer.userUUID }
-            .singleOrNull() ?: return UserNotFound()
+        val user = transaction {
+            User.find { Users.uuid eq answer.userUUID }
+                .singleOrNull()
+        } ?: return UserNotFound()
 
-        Answer.new {
-            this.user = user
-            question = answer.question.id
-            category = answer.category.name
-            isCorrect = answer.isCorrect
+        transaction {
+            Answer.new {
+                this.user = user
+                question = answer.question.id
+                category = answer.question.category.name
+                isCorrect = answer.isCorrect
+            }
         }
 
         return Success(Unit)

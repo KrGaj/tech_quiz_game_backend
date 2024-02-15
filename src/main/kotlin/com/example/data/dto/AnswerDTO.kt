@@ -10,6 +10,5 @@ data class AnswerDTO(
         with = UUIDSerializer::class
     ) val userUUID: UUID,
     val question: Question,
-    val category: Category,
     val isCorrect: Boolean,
 )
