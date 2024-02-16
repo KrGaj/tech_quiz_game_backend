@@ -12,21 +12,18 @@ import org.jetbrains.exposed.sql.transactions.transaction
 class AnswerRepositoryDefault : AnswerRepository {
     override suspend fun addAnswer(
         answer: AnswerDTO,
-    ): RepositoryResult<Unit> {
-        val user = transaction {
-            User.find { Users.uuid eq answer.userUUID }
+    ): RepositoryResult<Unit> = transaction {
+        val user = User.find { Users.uuid eq answer.userUUID }
                 .singleOrNull()
-        } ?: return UserNotFound()
+            ?: return@transaction UserNotFound()
 
-        transaction {
-            Answer.new {
-                this.user = user
-                question = answer.question.id
-                category = answer.question.category.name
-                isCorrect = answer.isCorrect
-            }
+        Answer.new {
+            this.user = user
+            question = answer.question.id
+            category = answer.question.category.name
+            isCorrect = answer.isCorrect
         }
 
-        return Success(Unit)
+        Success(Unit)
     }
 }
