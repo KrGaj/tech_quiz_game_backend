@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import com.example.data.dto.Category
 import com.example.data.dto.stats.AnsweredQuestionsCountStats
 import com.example.data.dto.stats.CategoryStats
 import com.example.data.dto.stats.CorrectAnswersStats
@@ -10,9 +11,9 @@ class StatsRepositoryDefault : StatsRepository {
         count: Int,
     ): List<CategoryStats> {
         return listOf(
-            CategoryStats("Test1", 21),
-            CategoryStats("Test2", 3),
-            CategoryStats("Test3", 7),
+            CategoryStats(Category("Test1"), 21),
+            CategoryStats(Category("Test2"), 3),
+            CategoryStats(Category("Test3"), 7),
         )
     }
 
