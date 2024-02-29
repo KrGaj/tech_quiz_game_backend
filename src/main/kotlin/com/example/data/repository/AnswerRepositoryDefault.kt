@@ -10,18 +10,20 @@ import com.example.util.UserNotFound
 import org.jetbrains.exposed.sql.transactions.transaction
 
 class AnswerRepositoryDefault : AnswerRepository {
-    override suspend fun addAnswer(
-        answer: AnswerDTO,
+    override suspend fun addMultipleAnswers(
+        answers: List<AnswerDTO>,
     ): RepositoryResult<Unit> = transaction {
-        val user = User.find { Users.uuid eq answer.userUUID }
-                .singleOrNull()
+        val user = User.find { Users.uuid eq answers.first().userUUID }
+            .singleOrNull()
             ?: return@transaction UserNotFound()
 
-        Answer.new {
-            this.user = user
-            question = answer.question.id
-            category = answer.question.category.name
-            isCorrect = answer.isCorrect
+        for (answer in answers) {
+            Answer.new {
+                this.user = user
+                question = answer.question.id
+                category = answer.question.category.name
+                isCorrect = answer.isCorrect
+            }
         }
 
         Success(Unit)

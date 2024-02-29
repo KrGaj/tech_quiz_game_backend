@@ -18,10 +18,10 @@ fun Application.routingAnswer() {
     val repository: AnswerRepository by inject()
 
     routing {
-        route("/answer") {
+        route("/answers") {
             post {
-                val answer = call.receive<AnswerDTO>()
-                val response = when(repository.addAnswer(answer)) {
+                val answers = call.receive<List<AnswerDTO>>()
+                val response = when(repository.addMultipleAnswers(answers)) {
                     is Success -> HttpStatusCode.Created
                     is UserNotFound -> HttpStatusCode.Unauthorized
                 }

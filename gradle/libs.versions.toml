@@ -1,12 +1,12 @@
 [versions]
 kotlin = "1.9.22"
 ktor = "2.3.8"
-exposed = "0.45.0"
+exposed = "0.47.0"
 koin = "3.5.3"
 google-api = "2.2.0"
-logback = "1.4.14"
+logback = "1.5.0"
 guava = "33.0.0-jre"
-postgresql = "42.7.1"
+postgresql = "42.7.2"
 
 [libraries]
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
