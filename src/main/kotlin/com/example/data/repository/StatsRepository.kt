@@ -1,15 +1,16 @@
 package com.example.data.repository
 
-import com.example.data.dto.stats.AnsweredQuestionsCountStats
-import com.example.data.dto.stats.CategoryStats
-import com.example.data.dto.stats.CorrectAnswersStats
+import com.example.data.dto.stats.CategoryStatsDTO
+import com.example.data.dto.stats.CorrectAnswersStatsDTO
+import java.util.*
 
 interface StatsRepository {
     fun getMostAnsweredCategories(
+        userUUID: UUID,
         count: Int,
-    ): List<CategoryStats>
+    ): List<CategoryStatsDTO>
 
-    fun getAnsweredQuestionsCount(): AnsweredQuestionsCountStats
-
-    fun getCorrectAnswersCount(): CorrectAnswersStats
+    fun getCorrectAnswersCount(
+        userUUID: UUID,
+    ): CorrectAnswersStatsDTO
 }

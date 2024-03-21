@@ -1,18 +1,16 @@
 [versions]
-kotlin = "1.9.22"
+kotlin = "1.9.23"
 ktor = "2.3.9"
-exposed = "0.47.0"
+exposed = "0.48.0"
 koin = "3.5.3"
-google-api = "2.2.0"
-logback = "1.5.0"
-guava = "33.0.0-jre"
-postgresql = "42.7.2"
+google-api = "2.4.0"
+logback = "1.5.3"
+postgresql = "42.7.3"
 
 [libraries]
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
 google-api-client = { module = "com.google.api-client:google-api-client", version.ref = "google-api" }
-google-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 
 koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
 koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
