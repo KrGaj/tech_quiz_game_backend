@@ -11,7 +11,7 @@ internal const val AUTH_NAME = "google-auth"
 
 fun Application.configureAuth() {
     val webClientId = environment.config
-        .property("ktor.auth.webClientId").toString()
+        .property("ktor.auth.webClientId").getString()
 
     install(Authentication) {
         val verifier = GoogleIdTokenVerifier.Builder(

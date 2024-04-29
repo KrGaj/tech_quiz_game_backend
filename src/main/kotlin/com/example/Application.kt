@@ -26,7 +26,7 @@ fun Application.koin() {
 
 fun Application.module() {
     initDatabase()
-//    configureAuth()
+    configureAuth()
     configureMonitoring()
     configureSerialization()
     configureRouting()
