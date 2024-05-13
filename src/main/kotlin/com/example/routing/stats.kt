@@ -2,6 +2,7 @@ package com.example.routing
 
 import com.example.data.repository.StatsRepository
 import com.example.plugins.AUTH_NAME
+import com.example.util.Success
 import com.example.util.toUUID
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -26,14 +27,16 @@ fun Application.routingStats() {
                         val categoriesCount = call.request
                             .queryParameters[categoriesCountParam]?.toInt()
 
-                        if (userUUID == null || categoriesCount == null)
+                        if (userUUID == null || categoriesCount == null) {
                             call.respond(HttpStatusCode.BadRequest)
+                        }
 
                         val stats = repository.getMostAnsweredCategories(
                             userUUID = userUUID!!,
                             count = categoriesCount!!,
-                        )
-                        call.respond(stats)
+                        ) as Success
+
+                        call.respond(stats.data)
                     }
                 }
 
@@ -42,13 +45,15 @@ fun Application.routingStats() {
                         val userUUID = call.request
                             .queryParameters[userUUIDParam]?.toUUID()
 
-                        if (userUUID == null)
+                        if (userUUID == null) {
                             call.respond(HttpStatusCode.BadRequest)
+                        }
 
                         val stats = repository.getCorrectAnswersCount(
                             userUUID = userUUID!!,
-                        )
-                        call.respond(stats)
+                        ) as Success
+
+                        call.respond(stats.data)
                     }
                 }
             }
