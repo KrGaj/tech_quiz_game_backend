@@ -21,7 +21,6 @@ repositories {
 
 dependencies {
     implementation(libs.google.api.client)
-    implementation(libs.google.guava)
 
     implementation(libs.postgresql)
 

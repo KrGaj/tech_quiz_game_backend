@@ -3,6 +3,7 @@ package com.example.data.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Category(
-    val name: String,
+data class QuestionDTO(
+    val id: Long,
+    val category: CategoryDTO,
 )

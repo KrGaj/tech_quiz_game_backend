@@ -19,6 +19,7 @@ fun Application.initDatabase() {
         username,
         password,
     )
+
     transaction(database) {
         exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"")
         SchemaUtils.create(Users)
