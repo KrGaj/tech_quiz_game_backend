@@ -15,8 +15,11 @@ class User(id: EntityID<Long>) : LongEntity(id) {
 }
 
 object Users : LongIdTable() {
+    private const val USERNAME_LENGTH = 32
+    private const val EMAIL_LENGTH = 320
+
     val uuid = uuid("uuid").uniqueIndex()
         .defaultExpression(CustomFunction("uuid_generate_v4", UUIDColumnType()))
-    val username = varchar("username", 32).uniqueIndex()
-    val email = varchar("email", 320).uniqueIndex()
+    val username = varchar("username", USERNAME_LENGTH).uniqueIndex()
+    val email = varchar("email", EMAIL_LENGTH).uniqueIndex()
 }

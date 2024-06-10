@@ -7,31 +7,36 @@ import com.google.api.client.json.gson.GsonFactory
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
 
-internal const val AUTH_NAME = "google-auth"
+internal const val GOOGLE_AUTH_NAME = "google-auth"
 
 fun Application.configureAuth() {
     val webClientId = environment.config
         .property("ktor.auth.webClientId").getString()
+    val audience = listOf(webClientId)
 
     install(Authentication) {
-        val verifier = GoogleIdTokenVerifier.Builder(
-            NetHttpTransport(),
-            GsonFactory(),
-        )
-            .setAudience(listOf(webClientId))
-            .build()
+        configureBearer(audience)
+    }
+}
 
-        bearer(AUTH_NAME) {
-            authenticate { credential ->
-                val idToken = verifier.verify(credential.token)
+private fun AuthenticationConfig.configureBearer(
+    audience: List<String>,
+) = bearer(GOOGLE_AUTH_NAME) {
+    val verifier = GoogleIdTokenVerifier.Builder(
+        NetHttpTransport(),
+        GsonFactory(),
+    )
+        .setAudience(audience)
+        .build()
 
-                idToken?.payload?.let {
-                    val email = it.email
-                    val name = it["name"] as String
+    authenticate { credential ->
+        val idToken = verifier.verify(credential.token)
 
-                    TokenData(name, email)
-                }
-            }
+        idToken?.payload?.let {
+            val email = it.email
+            val name = it["name"] as String
+
+            TokenData(name, email)
         }
     }
 }

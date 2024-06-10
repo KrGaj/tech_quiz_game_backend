@@ -17,10 +17,12 @@ class Answer(id: EntityID<Long>) : LongEntity(id) {
 }
 
 object Answers : LongIdTable() {
+    private const val CATEGORY_NAME_LENGTH = 20
+
     val uuid = uuid("uuid").uniqueIndex()
         .defaultExpression(CustomFunction("uuid_generate_v4", UUIDColumnType()))
     val user = reference("user_id", Users)
     val question = long("question_id")
-    val category = varchar("category_name", 20)
+    val category = varchar("category_name", CATEGORY_NAME_LENGTH)
     val isCorrect = bool("is_correct")
 }
