@@ -1,4 +1,3 @@
-
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.ktor)
@@ -41,6 +40,6 @@ dependencies {
     implementation(libs.exposed.jdbc)
 
     implementation(libs.logback.classic)
-    testImplementation(libs.ktor.server.tests.jvm)
+    testImplementation(libs.ktor.server.test.host)
     testImplementation(libs.kotlin.test.junit)
 }

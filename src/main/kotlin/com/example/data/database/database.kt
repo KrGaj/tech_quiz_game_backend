@@ -3,9 +3,9 @@ package com.example.data.database
 import com.example.data.database.entity.Answers
 import com.example.data.database.entity.Users
 import io.ktor.server.application.*
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.Database
+import org.jetbrains.exposed.v1.jdbc.SchemaUtils
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 fun Application.initDatabase() {
     val jdbcURL = environment.config.property("ktor.database.jdbcURL").getString()

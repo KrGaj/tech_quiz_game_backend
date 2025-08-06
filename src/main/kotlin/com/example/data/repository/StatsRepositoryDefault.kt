@@ -7,7 +7,12 @@ import com.example.data.dto.stats.CorrectAnswersStatsDTO
 import com.example.util.RepositoryResult
 import com.example.util.Success
 import com.example.util.transactionForUser
-import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.v1.core.SortOrder
+import org.jetbrains.exposed.v1.core.alias
+import org.jetbrains.exposed.v1.core.and
+import org.jetbrains.exposed.v1.core.count
+import org.jetbrains.exposed.v1.jdbc.select
+import org.jetbrains.exposed.v1.jdbc.selectAll
 import java.util.*
 
 class StatsRepositoryDefault : StatsRepository {

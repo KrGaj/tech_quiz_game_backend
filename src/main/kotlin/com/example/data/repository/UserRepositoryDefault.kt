@@ -6,7 +6,7 @@ import com.example.data.dto.TokenData
 import com.example.data.dto.UserDTO
 import com.example.util.RepositoryResult
 import com.example.util.Success
-import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class UserRepositoryDefault : UserRepository {
     override suspend fun getOrCreateUser(
@@ -23,9 +23,9 @@ class UserRepositoryDefault : UserRepository {
 
         return user.let {
             val dto = UserDTO(
-                uuid = user.uuid,
-                username = user.username,
-                email = user.email,
+                uuid = it.uuid,
+                username = it.username,
+                email = it.email,
             )
             Success(dto)
         }
