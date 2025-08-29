@@ -10,7 +10,7 @@ ktor:
     security:
         ssl:
             keyStore: keystore.jks
-            keyAlias: sampleAlias
+            keyAlias: $KEY_ALIAS
             keyStorePassword: $KEY_STORE_PASSWORD
             privateKeyPassword: $PRIVATE_KEY_PASSWORD
 
