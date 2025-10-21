@@ -6,6 +6,7 @@ import com.example.data.dto.TokenData
 import com.example.data.dto.UserDTO
 import com.example.util.RepositoryResult
 import com.example.util.Success
+import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 class UserRepositoryDefault : UserRepository {
