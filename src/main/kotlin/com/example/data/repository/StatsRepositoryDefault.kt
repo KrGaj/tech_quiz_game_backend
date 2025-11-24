@@ -7,21 +7,19 @@ import com.example.data.dto.stats.CorrectAnswersStatsDTO
 import com.example.util.RepositoryResult
 import com.example.util.Success
 import com.example.util.transactionForUser
-import org.jetbrains.exposed.v1.core.SortOrder
-import org.jetbrains.exposed.v1.core.alias
-import org.jetbrains.exposed.v1.core.and
-import org.jetbrains.exposed.v1.core.count
-import org.jetbrains.exposed.v1.core.eq
+import org.jetbrains.exposed.v1.core.*
 import org.jetbrains.exposed.v1.jdbc.select
 import org.jetbrains.exposed.v1.jdbc.selectAll
-import java.util.*
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 class StatsRepositoryDefault : StatsRepository {
+    @OptIn(ExperimentalUuidApi::class)
     override fun getMostAnsweredCategories(
-        userUUID: UUID,
+        userUuid: Uuid,
         count: Int,
     ): RepositoryResult<List<CategoryStatsDTO>> =
-        transactionForUser(userUUID) { user ->
+        transactionForUser(userUuid) { user ->
             val categoryAlias = Answers.category.alias("category")
             val answersCountAlias = Answers.id.count().alias("answersCount")
 
@@ -43,10 +41,11 @@ class StatsRepositoryDefault : StatsRepository {
             Success(result)
         }
 
+    @OptIn(ExperimentalUuidApi::class)
     override fun getCorrectAnswersCount(
-        userUUID: UUID,
+        userUuid: Uuid,
     ): RepositoryResult<CorrectAnswersStatsDTO> =
-        transactionForUser(userUUID) { user ->
+        transactionForUser(userUuid) { user ->
             val correctAnswersCount = Answers.selectAll()
                 .where {
                     (Answers.user eq user.id) and (Answers.isCorrect eq true)

@@ -3,15 +3,18 @@ package com.example.data.repository
 import com.example.data.dto.stats.CategoryStatsDTO
 import com.example.data.dto.stats.CorrectAnswersStatsDTO
 import com.example.util.RepositoryResult
-import java.util.*
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 interface StatsRepository {
+    @OptIn(ExperimentalUuidApi::class)
     fun getMostAnsweredCategories(
-        userUUID: UUID,
+        userUuid: Uuid,
         count: Int,
     ): RepositoryResult<List<CategoryStatsDTO>>
 
+    @OptIn(ExperimentalUuidApi::class)
     fun getCorrectAnswersCount(
-        userUUID: UUID,
+        userUuid: Uuid,
     ): RepositoryResult<CorrectAnswersStatsDTO>
 }
