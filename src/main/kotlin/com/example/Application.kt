@@ -6,9 +6,8 @@ import com.example.plugins.configureAuth
 import com.example.plugins.configureMonitoring
 import com.example.plugins.configureRouting
 import com.example.plugins.configureSerialization
-import io.ktor.server.application.Application
-import io.ktor.server.application.install
-import io.ktor.server.netty.EngineMain
+import io.ktor.server.application.*
+import io.ktor.server.netty.*
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
 
@@ -25,9 +24,9 @@ fun Application.koin() {
 }
 
 fun Application.module() {
-    initDatabase()
     configureAuth()
     configureMonitoring()
-    configureSerialization()
     configureRouting()
+    configureSerialization()
+    initDatabase()
 }

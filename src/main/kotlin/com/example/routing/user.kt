@@ -2,12 +2,16 @@ package com.example.routing
 
 import com.example.data.dto.TokenData
 import com.example.data.repository.UserRepository
+import com.example.data.resources.User
 import com.example.plugins.GOOGLE_AUTH_NAME
 import com.example.util.Success
-import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
+import io.ktor.server.application.Application
+import io.ktor.server.auth.authenticate
+import io.ktor.server.auth.principal
+import io.ktor.server.resources.get
+import io.ktor.server.response.respond
+import io.ktor.server.routing.Route
+import io.ktor.server.routing.routing
 import org.koin.ktor.ext.inject
 
 fun Application.routingUser() {
@@ -22,11 +26,9 @@ fun Application.routingUser() {
 
 private fun Route.configureUserRouting(
     repository: UserRepository,
-) = route("/user") {
-    get {
-        val tokenData = call.principal<TokenData>()
-        val response = repository.getOrCreateUser(tokenData!!) as Success
+) = get<User> {
+    val tokenData = call.principal<TokenData>()
+    val response = repository.getOrCreateUser(tokenData!!) as Success
 
-        call.respond(response.data)
-    }
+    call.respond(response.data)
 }

@@ -16,14 +16,14 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+}
+
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_21
     }
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
@@ -33,23 +33,23 @@ repositories {
 dependencies {
     implementation(libs.google.api.client)
 
+    implementation(libs.exposed.core)
+    implementation(libs.exposed.dao)
+    implementation(libs.exposed.jdbc)
     implementation(libs.postgresql)
-
-    implementation(libs.ktor.server.call.logging.jvm)
-    implementation(libs.ktor.server.content.negotiation.jvm)
-    implementation(libs.ktor.server.core.jvm)
-    implementation(libs.ktor.serialization.kotlinx.json.jvm)
-    implementation(libs.ktor.server.netty.jvm)
-    implementation(libs.ktor.server.config.yaml)
-    implementation(libs.ktor.server.auth)
-    implementation(libs.ktor.server.auth.jwt)
 
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
 
-    implementation(libs.exposed.core)
-    implementation(libs.exposed.dao)
-    implementation(libs.exposed.jdbc)
+    implementation(libs.ktor.serialization.kotlinx.json.jvm)
+    implementation(libs.ktor.server.auth)
+    implementation(libs.ktor.server.auth.jwt)
+    implementation(libs.ktor.server.call.logging.jvm)
+    implementation(libs.ktor.server.content.negotiation.jvm)
+    implementation(libs.ktor.server.config.yaml)
+    implementation(libs.ktor.server.core.jvm)
+    implementation(libs.ktor.server.netty.jvm)
+    implementation(libs.ktor.server.resources)
 
     implementation(libs.logback.classic)
     testImplementation(libs.ktor.server.test.host)
