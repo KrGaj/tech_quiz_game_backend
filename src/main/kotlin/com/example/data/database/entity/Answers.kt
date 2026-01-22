@@ -1,14 +1,17 @@
 package com.example.data.database.entity
 
 import org.jetbrains.exposed.v1.core.CustomFunction
-import org.jetbrains.exposed.v1.core.UUIDColumnType
+import org.jetbrains.exposed.v1.core.UuidColumnType
 import org.jetbrains.exposed.v1.core.dao.id.EntityID
 import org.jetbrains.exposed.v1.core.dao.id.LongIdTable
 import org.jetbrains.exposed.v1.dao.LongEntity
 import org.jetbrains.exposed.v1.dao.LongEntityClass
+import kotlin.uuid.ExperimentalUuidApi
 
 class Answer(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<Answer>(Answers)
+
+    @OptIn(ExperimentalUuidApi::class)
     var uuid by Answers.uuid
     var user by User referencedOn Answers.user
     var question by Answers.question
@@ -19,8 +22,9 @@ class Answer(id: EntityID<Long>) : LongEntity(id) {
 object Answers : LongIdTable() {
     private const val CATEGORY_NAME_LENGTH = 20
 
+    @OptIn(ExperimentalUuidApi::class)
     val uuid = uuid("uuid").uniqueIndex()
-        .defaultExpression(CustomFunction("uuid_generate_v4", UUIDColumnType()))
+        .defaultExpression(CustomFunction("uuid_generate_v4", UuidColumnType()))
     val user = reference("user_id", Users)
     val question = long("question_id")
     val category = varchar("category_name", CATEGORY_NAME_LENGTH)

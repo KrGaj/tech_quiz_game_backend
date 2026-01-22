@@ -8,9 +8,10 @@ import com.example.util.RepositoryResult
 import com.example.util.Success
 import org.jetbrains.exposed.v1.core.eq
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
+import org.koin.core.annotation.Single
 import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.toKotlinUuid
 
+@Single(binds = [UserRepository::class])
 class UserRepositoryDefault : UserRepository {
     @OptIn(ExperimentalUuidApi::class)
     override suspend fun getOrCreateUser(
@@ -27,7 +28,7 @@ class UserRepositoryDefault : UserRepository {
 
         return user.let {
             val dto = UserDTO(
-                uuid = it.uuid.toKotlinUuid(),
+                uuid = it.uuid,
                 username = it.username,
                 email = it.email,
             )

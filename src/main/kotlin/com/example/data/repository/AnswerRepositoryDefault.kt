@@ -5,8 +5,10 @@ import com.example.data.dto.AnswerDTO
 import com.example.util.RepositoryResult
 import com.example.util.Success
 import com.example.util.transactionForUser
+import org.koin.core.annotation.Single
 import kotlin.uuid.ExperimentalUuidApi
 
+@Single(binds = [AnswerRepository::class])
 class AnswerRepositoryDefault : AnswerRepository {
     @OptIn(ExperimentalUuidApi::class)
     override suspend fun addMultipleAnswers(

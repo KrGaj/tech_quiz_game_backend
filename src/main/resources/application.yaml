@@ -2,7 +2,7 @@ ktor:
     application:
         modules:
             - com.example.ApplicationKt.koin
-            - com.example.ApplicationKt.module
+            - com.example.ApplicationKt.pluginsModule
     deployment:
         port: 8080
 

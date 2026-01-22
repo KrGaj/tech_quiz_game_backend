@@ -10,9 +10,11 @@ import com.example.util.transactionForUser
 import org.jetbrains.exposed.v1.core.*
 import org.jetbrains.exposed.v1.jdbc.select
 import org.jetbrains.exposed.v1.jdbc.selectAll
+import org.koin.core.annotation.Single
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
+@Single(binds = [StatsRepository::class])
 class StatsRepositoryDefault : StatsRepository {
     @OptIn(ExperimentalUuidApi::class)
     override fun getMostAnsweredCategories(
