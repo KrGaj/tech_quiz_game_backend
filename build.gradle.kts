@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
+    alias(libs.plugins.koin.compiler)
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.ktor)
     alias(libs.plugins.serialization)
 }
@@ -39,8 +39,8 @@ dependencies {
     implementation(libs.exposed.jdbc)
     implementation(libs.postgresql)
 
+    implementation(platform(libs.koin.bom))
     implementation(libs.koin.annotations)
-    ksp(libs.koin.ksp.compiler)
     implementation(libs.koin.ktor)
     implementation(libs.koin.logger.slf4j)
 

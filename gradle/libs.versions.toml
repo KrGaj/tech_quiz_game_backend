@@ -1,23 +1,22 @@
 [versions]
-exposed = "1.0.0"
-google-api = "2.8.1"
-kotlin = "2.3.0"
-koin = "4.1.1"
-koin-annotations = "2.3.1"
-ksp = "2.3.4"
+exposed = "1.1.1"
+google-api = "2.9.0"
+kotlin = "2.3.20-RC"
+koin = "4.2.0-RC1"
+koin-plugin = "0.3.0"
 ktor = "3.4.0"
-logback = "1.5.25"
-postgresql = "42.7.9"
+logback = "1.5.32"
+postgresql = "42.7.10"
 
 [libraries]
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
 
 google-api-client = { module = "com.google.api-client:google-api-client", version.ref = "google-api" }
 
-koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
-koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
-koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
-koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-annotations = { module = "io.insert-koin:koin-annotations" }
+koin-ktor = { module = "io.insert-koin:koin-ktor" }
+koin-logger-slf4j = { module = "io.insert-koin:koin-logger-slf4j" }
 
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 
@@ -40,8 +39,8 @@ exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "e
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 
 [plugins]
+koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koin-plugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
