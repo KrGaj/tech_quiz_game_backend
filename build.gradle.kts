@@ -18,12 +18,12 @@ application {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_25
 }
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.JVM_21
+        jvmTarget = JvmTarget.JVM_25
     }
 }
 
@@ -34,6 +34,7 @@ repositories {
 dependencies {
     implementation(libs.google.api.client)
 
+    implementation(platform(libs.exposed.bom))
     implementation(libs.exposed.core)
     implementation(libs.exposed.dao)
     implementation(libs.exposed.jdbc)
