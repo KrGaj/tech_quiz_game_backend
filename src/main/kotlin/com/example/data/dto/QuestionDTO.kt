@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class QuestionDTO(
-    val id: Long,
+    val text: String,
     val category: CategoryDTO,
 )

@@ -22,8 +22,21 @@ object Users : LongIdTable() {
     private const val EMAIL_LENGTH = 320
 
     @OptIn(ExperimentalUuidApi::class)
-    val uuid = uuid("uuid").uniqueIndex()
-        .defaultExpression(CustomFunction("uuid_generate_v4", UuidColumnType()))
-    val username = varchar("username", USERNAME_LENGTH).uniqueIndex()
-    val email = varchar("email", EMAIL_LENGTH).uniqueIndex()
+    val uuid = uuid(
+        name = "uuid",
+    ).uniqueIndex()
+        .defaultExpression(
+            defaultValue = CustomFunction(
+                functionName = "uuid_generate_v4",
+                columnType = UuidColumnType(),
+            )
+        )
+    val username = varchar(
+        name = "username",
+        length = USERNAME_LENGTH,
+    ).uniqueIndex()
+    val email = varchar(
+        name = "email",
+        length = EMAIL_LENGTH,
+    ).uniqueIndex()
 }

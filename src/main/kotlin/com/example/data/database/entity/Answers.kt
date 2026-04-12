@@ -23,10 +23,27 @@ object Answers : LongIdTable() {
     private const val CATEGORY_NAME_LENGTH = 20
 
     @OptIn(ExperimentalUuidApi::class)
-    val uuid = uuid("uuid").uniqueIndex()
-        .defaultExpression(CustomFunction("uuid_generate_v4", UuidColumnType()))
-    val user = reference("user_id", Users)
-    val question = long("question_id")
-    val category = varchar("category_name", CATEGORY_NAME_LENGTH)
-    val isCorrect = bool("is_correct")
+    val uuid = uuid(
+        name = "uuid",
+    ).uniqueIndex()
+        .defaultExpression(
+            defaultValue = CustomFunction(
+                functionName = "uuid_generate_v4",
+                columnType = UuidColumnType(),
+            )
+        )
+    val user = reference(
+        name = "user_id",
+        foreign = Users,
+    )
+    val question = text(
+        name = "question_text",
+    )
+    val category = varchar(
+        name = "category_name",
+        length = CATEGORY_NAME_LENGTH,
+    )
+    val isCorrect = bool(
+        name = "is_correct",
+    )
 }
