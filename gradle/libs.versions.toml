@@ -6,7 +6,7 @@ koin = "4.2.1"
 koin-plugin = "1.0.0-RC2"
 ktor = "3.4.3"
 logback = "1.5.32"
-postgresql = "42.7.10"
+postgresql = "42.7.11"
 
 [libraries]
 postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql" }
