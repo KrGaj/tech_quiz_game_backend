@@ -1,7 +1,5 @@
 package com.example.data.database.entity
 
-import org.jetbrains.exposed.v1.core.CustomFunction
-import org.jetbrains.exposed.v1.core.UuidColumnType
 import org.jetbrains.exposed.v1.core.dao.id.EntityID
 import org.jetbrains.exposed.v1.core.dao.id.LongIdTable
 import org.jetbrains.exposed.v1.dao.LongEntity
@@ -25,16 +23,13 @@ object Users : LongIdTable() {
     val uuid = uuid(
         name = "uuid",
     ).uniqueIndex()
-        .defaultExpression(
-            defaultValue = CustomFunction(
-                functionName = "uuid_generate_v4",
-                columnType = UuidColumnType(),
-            )
-        )
+        .autoGenerate(UuidVersion.V4)
+
     val username = varchar(
         name = "username",
         length = USERNAME_LENGTH,
     ).uniqueIndex()
+
     val email = varchar(
         name = "email",
         length = EMAIL_LENGTH,
